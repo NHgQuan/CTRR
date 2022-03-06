@@ -1,2 +1,1 @@
-# CTRR
-Bài tập lớn môn cấu trúc rời rạc
+Commit cho zui zui thoi
