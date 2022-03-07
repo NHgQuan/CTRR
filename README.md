@@ -11,6 +11,3 @@ Danh sách thành viên nhóm
 2112122 	Nguyễn Hồng Quân	quan.nguyenhg12@hcmut.edu.vn	
 
 Folder Instructions bao gồm một số hướng dẫn cách sử dụng R, Latex, Git, Github
-
-Về cách sử dụng git:
-Chỉ cần vài lệnh git 
