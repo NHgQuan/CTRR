@@ -25,3 +25,5 @@ git push để tải từ máy lên github.
 git pull để đồng bộ github về máy.
 Ngoài ra các bạn tìm hiểu thêm, chưa hiểu về nguyên lý hoạt động của git thì xem trong sách progit, https://www.youtube.com/watch?v=1JuYQgpbrW0, https://www.youtube.com/watch?v=8JJ101D3knE, tui chỉ biết chừng đó thui ^^.
 Ngoài ra dùng git log để xem lịch sử commit trên máy
+
+Ai dùng vsCdoe thì tải GitLens https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens để quan sát được code do ai viết, ai commit, viết lúc nào cho thuận lợi
