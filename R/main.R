@@ -6,9 +6,7 @@ kytu1 <- 4
 kytu2 <- 2
 kytu3 <- 6
 kytu4 <- 3
-
 kq <- (kytu1 + kytu2 + kytu3 + kytu4) %% 6
-print (kq)
 stt <- c (11,12,13)
 
 
@@ -22,12 +20,14 @@ table <- subset(bigTable, location == "Canada" |location == "Greenland" |
 allDate <- bigTable $ date  #tìm ngày tháng
 date <- table $ date
 
-#1) tính số lượng đất nước
+#i1 
+#tính số lượng đất nước
 numLoca <- length ( unique (bigTable $ location) )
 
 #hiển thị tên 10 đất nước đầu tiên
 iso_code <- c("AFG")
 country <- c("Afghanistan")
+locations <- bigTable $ location
 indexCountry <- 1
 for ( i in seq ( 1, (length(locations) - 1), by = 1 ) ) {
     if (locations[i] != locations [i + 1]) {
@@ -40,12 +40,19 @@ for ( i in seq ( 1, (length(locations) - 1), by = 1 ) ) {
     if (indexCountry >= 10) { break }
 }
 
-#i2) Bảng hiển thị 10 đất nước đầu tiên
+#i2 
+#Bảng hiển thị 10 đất nước đầu tiên
 top10Countries <- data.frame (iso_code, country)
 
-#i3) tìm số lượng châu lục trong tập mẫu
+#i3 
+#tìm số lượng châu lục trong tập mẫu
 numConti <- length ( unique (bigTable $ continent) )
 #OWID_AFR không có tên châu lục có cần tính không?
 
 
-# tính số lượng dữ liệu thu thập được trong từng châu lục và tổng số
+#i45
+#tính số lượng dữ liệu thu thập được trong từng châu lục và tổng số
+#ở đây, tôi giả sử "dữ liệu" đề bài nói đến chính là new_cases và new_deaths
+
+#Đầu tiên, lập bảng newcases của từng châu lục
+
