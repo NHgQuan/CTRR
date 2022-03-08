@@ -49,3 +49,4 @@ numConti <- length ( unique (bigTable $ continent) )
 
 
 # tính số lượng dữ liệu thu thập được trong từng châu lục và tổng số
+#ở đây tôi giả sử là new_cases new_deaths
