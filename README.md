@@ -4,11 +4,11 @@ Mã đề 4263
 
 Danh sách thành viên nhóm
 ID          Name                            Email                                               Duty
-2110300	    Lê Văn Tuấn Kiệt (Valentin)	    kiet.le0303@hcmut.edu.vn | lvtkiet.work@gmail.com   R + Report + Manage entire project	    
+2110300	    Lê Văn Tuấn Kiệt (Valentin)	    kiet.le0303@hcmut.edu.vn | lvtkiet.work@gmail.com   R (1, 2, 3, 4) + Report + Manage entire project	    
 2110030	    Dương Ngọc Ân	                an.duong110103@hcmut.edu.vn	                        Latex              
-2114066	    Phan Lê Nhật Minh	            minh.phanpvd@hcmut.edu.vn                           R	
+2114066	    Phan Lê Nhật Minh	            minh.phanpvd@hcmut.edu.vn                           R (1, 8, 9, 10)	
 2112185	    Cù Hoàng Nguyễn Sơn	            son.cu3856@hcmut.edu.vn	                            Latex
-2112887	    Từ Huy Bảo	                    bao.tu4545@hcmut.edu.vn	                            R
+2112887	    Từ Huy Bảo	                    bao.tu4545@hcmut.edu.vn	                            R (1, 5, 6, 7)
 2112122 	Nguyễn Hồng Quân	            quan.nguyenhg12@hcmut.edu.vn	                    Latex
 
 Folder Instructions bao gồm một số hướng dẫn cách sử dụng R, Latex, Git, Github
