@@ -48,3 +48,4 @@ numConti <- length ( unique (bigTable $ continent) )
 #OWID_AFR không có tên châu lục có cần tính không?
 
 
+# tính số lượng dữ liệu thu thập được trong từng châu lục và tổng số
