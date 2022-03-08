@@ -22,14 +22,8 @@ table <- subset(bigTable, location == "Canada" |location == "Greenland" |
 allDate <- bigTable $ date  #tìm ngày tháng
 date <- table $ date
 
-#1) tính số lượng đất nước và định danh mỗi đất nước
-locations <- bigTable $ location
-numLoca <- 1
-for ( i in seq ( 1, (length(locations) - 1), by = 1 ) ) {
-    if (locations[i] != locations [i + 1]) {
-        numLoca <- numLoca + 1
-    }
-}
+#1) tính số lượng đất nước
+numLoca <- length ( unique (bigTable $ location) )
 
 #hiển thị tên 10 đất nước đầu tiên
 iso_code <- c("AFG")
@@ -48,4 +42,9 @@ for ( i in seq ( 1, (length(locations) - 1), by = 1 ) ) {
 
 #i2) Bảng hiển thị 10 đất nước đầu tiên
 top10Countries <- data.frame (iso_code, country)
+
+#i3) tìm số lượng châu lục trong tập mẫu
+numConti <- length ( unique (bigTable $ continent) )
+#OWID_AFR không có tên châu lục có cần tính không?
+
 
