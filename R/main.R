@@ -1,5 +1,6 @@
 library(readr)
 library(ggplot2)
+library(stringr)
 
 # Tính các ký tự 1 2 3 4 từ thực tế
 kytu1 <- 4
@@ -89,8 +90,8 @@ print(subset(
 print("Châu lục có số lượng dữ liệu thu thập lớn nhất")
 print(subset(
     nValuesOfContinents,
-    values == max(nValuesOfContinents[- nrow(nValuesOfContinents), ] $ values)
-))          #- nrow để loại đi cái cuối cùng là sum
+    values == max(nValuesOfContinents[-nrow(nValuesOfContinents), ]$ values)
+)) #- nrow để loại đi cái cuối cùng là sum
 
 print("Nước có số lượng dữ liệu thu thập nhỏ nhất")
 print(subset(
@@ -100,13 +101,13 @@ print(subset(
 print("Nước có số lượng dữ liệu thu thập lớn nhất")
 print(subset(
     nValuesOfLoca,
-    values == max(nValuesOfLoca[- nrow(nValuesOfLoca), ] $ values)
+    values == max(nValuesOfLoca[-nrow(nValuesOfLoca), ]$ values)
 ))
 
 
-#10 & 11
-#phải lập bảng dữ liệu thu thập được theo từng date
-#như trên thôi
+# 10 & 11
+# phải lập bảng dữ liệu thu thập được theo từng date
+# như trên thôi
 dates <- unique(bigTable$ date)
 values <- c()
 for (string in dates) {
@@ -125,5 +126,64 @@ print(subset(
     values == max(nValuesOfDates$ values)
 ))
 
-#i12 13 14
-#Bây giờ là theo cả Date và cả Châu Lục
+
+# i12 13 14
+# Bây giờ là theo cả Date và cả Châu Lục
+contiAndDate <- unique(bigTable[, c(2, 4)])
+values <- c()
+for (i in (1:nrow(contiAndDate))) {
+    values <- append(values, nrow(subset(
+        bigTable,
+        date == (contiAndDate[i, ])$ date &
+            continent == (contiAndDate[i, ])$ continent
+    )))
+}
+nValuesOfContiAndDate <- data.frame(contiAndDate, values)
+
+print("số lượng dữ liệu thu thập lớn nhất theo ngày và Châu Lục")
+print(subset(
+    nValuesOfContiAndDate,
+    values == max(nValuesOfContiAndDate$ values)
+))
+print("số lượng dữ liệu thu thập nhỏ nhất theo ngày và Châu Lục")
+print(subset(
+    nValuesOfContiAndDate,
+    values == min(nValuesOfContiAndDate$ values)
+))
+
+# i15
+# Với một date là k và châu lục t cho trước, hãy cho biết số lượng dữ liệu thu thập được.
+# function
+findValuesDC <- function(k = "", t = "") {
+    print(subset(
+        nValuesOfContiAndDate,
+        continent == k &
+            date == t
+    )$ values)
+}
+#findValuesDC ("Africa", "2/19/2022")
+
+#i16
+#tìm các đất nước có số lượng dữ liệu thu thập bằng nhau
+#ở đây tôi không biết là in tất cả hay in một số!
+
+#tạo một bảng mới có iso_code ở đầu, đề yêu cầu in iso_cdoe
+nValuesOfLoca2 <- data.frame(append (unique(bigTable$ iso_code), 0), nValuesOfLoca) 
+for (i in 1 : (nrow(nValuesOfLoca) - 1) ) {
+    for (j in i : nrow(nValuesOfLoca)) {
+        if (nValuesOfLoca[i,2] == nValuesOfLoca[j,2] ) {
+            print (
+                subset (nValuesOfLoca2, values == nValuesOfLoca[i,2] ) [, 1]
+            )
+            break #ở đây tôi không biết là in tất cả hay in một số!
+
+        }
+    }
+}
+#lỗi ở đây
+
+#i17 liệt kê tên đất nước, chiều dài iso_code >= 3
+print (subset (bigTable,
+    str_length(iso_code) >= 3
+    ) [ , c(1,3)]
+)
