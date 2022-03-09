@@ -9,8 +9,7 @@ stt <- c(11, 12, 13)
 
 bigTable <- (read.csv("owid-covid-data.csv", header = TRUE)) # bigTable là bảng thô chưa được chỉnh sửa
 
-#coi như mỗi châu lục rỗng không phải là ""
-bigTable <- subset (bigTable, continent != "")
+tableNoNull <- subset (bigTable, continent != "")
 
 # truy cập vào từng phần tử của mảng bằng $
 # công việc: sau khi đọc R phải liệt ra các nước Canada,  Greenland và United States thôi

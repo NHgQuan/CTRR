@@ -16,18 +16,18 @@ print (top10Countries)
 
 # i3
 # tìm số lượng châu lục trong tập mẫu
-numConti <- length(unique(bigTable$ continent))
+numConti <- length(unique(tableNoNull$ continent))
 # OWID_AFR không có tên châu lục có cần tính không?
 
 
 # i45
 # tính số lượng dữ liệu thu thập được trong từng châu lục và tổng số
 # ở đây, tôi giả sử "dữ liệu" đề bài nói đến chính là số hàng
-continents <- unique(bigTable$ continent)
+continents <- unique(tableNoNull$ continent)
 values <- c()
 
 for (string in continents) {
-    values <- append(values, nrow(subset(bigTable, continent == string)))
+    values <- append(values, nrow(subset(tableNoNull, continent == string)))
 }
 continents <- append(continents, "Sum")
 values <- append(values, sum(values)) # cần tính tổng nữa
@@ -96,11 +96,11 @@ print(subset(
 
 # i12 13 14
 # Bây giờ là theo cả Date và cả Châu Lục
-contiAndDate <- unique(bigTable[, c(2, 4)])
+contiAndDate <- unique(tableNoNull[, c(2, 4)])
 values <- c()
 for (i in (1:nrow(contiAndDate))) {
     values <- append(values, nrow(subset(
-        bigTable,
+        tableNoNull,
         date == (contiAndDate[i, ])$ date &
             continent == (contiAndDate[i, ])$ continent
     )))
