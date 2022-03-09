@@ -55,28 +55,75 @@ numConti <- length(unique(bigTable$ continent))
 # i45
 # tính số lượng dữ liệu thu thập được trong từng châu lục và tổng số
 # ở đây, tôi giả sử "dữ liệu" đề bài nói đến chính là số hàng
-continents <- unique(bigTable $ continent)
+continents <- unique(bigTable$ continent)
 values <- c()
 
 for (string in continents) {
     values <- append(values, nrow(subset(bigTable, continent == string)))
 }
-continents <- append (continents, "Sum")
-values <- append(values, sum (values) ) #cần tính tổng nữa
-nValuesOfContinents <- data.frame(continents, values) #bước hoàn thiện bảng cần tính
-                                                      #vẫn có một châu lục trống
+continents <- append(continents, "Sum")
+values <- append(values, sum(values)) # cần tính tổng nữa
+nValuesOfContinents <- data.frame(continents, values) # bước hoàn thiện bảng cần tính
+# vẫn có một châu lục trống
 
-#i5 làm hoàn toàn tương tự như i4
-locations <- unique (bigTable $ location)
+# i5 làm hoàn toàn tương tự như i4
+locations <- unique(bigTable$ location)
 values <- c()
 
 for (string in locations) {
     values <- append(values, nrow(subset(bigTable, location == string)))
 }
-locations <- append (locations, "Sum")
-values <- append(values, sum (values) ) #cần tính tổng nữa
+locations <- append(locations, "Sum")
+values <- append(values, sum(values)) # cần tính tổng nữa
 nValuesOfLoca <- data.frame(locations, values)
 
-#hiển thị 10 nước cuối, sử dụng hàm tail(), ngược lại dùng hàm head()
-print (tail (nValuesOfLoca, n = 11))
+# hiển thị 10 nước cuối, sử dụng hàm tail(), ngược lại dùng hàm head()
+print(tail(nValuesOfLoca, n = 11))
 
+# i6789
+print("Châu lục có số lượng dữ liệu thu thập nhỏ nhất")
+print(subset(
+    nValuesOfContinents,
+    values == min(nValuesOfContinents$ values)
+))
+print("Châu lục có số lượng dữ liệu thu thập lớn nhất")
+print(subset(
+    nValuesOfContinents,
+    values == max(nValuesOfContinents[- nrow(nValuesOfContinents), ] $ values)
+))          #- nrow để loại đi cái cuối cùng là sum
+
+print("Nước có số lượng dữ liệu thu thập nhỏ nhất")
+print(subset(
+    nValuesOfLoca,
+    values == min(nValuesOfLoca$ values)
+))
+print("Nước có số lượng dữ liệu thu thập lớn nhất")
+print(subset(
+    nValuesOfLoca,
+    values == max(nValuesOfLoca[- nrow(nValuesOfLoca), ] $ values)
+))
+
+
+#10 & 11
+#phải lập bảng dữ liệu thu thập được theo từng date
+#như trên thôi
+dates <- unique(bigTable$ date)
+values <- c()
+for (string in dates) {
+    values <- append(values, nrow(subset(bigTable, date == string)))
+}
+nValuesOfDates <- data.frame(dates, values)
+
+print("Ngày có số lượng dữ liệu thu thập nhỏ nhất")
+print(subset(
+    nValuesOfDates,
+    values == min(nValuesOfDates$ values)
+))
+print("Ngày có số lượng dữ liệu thu thập lớn nhất")
+print(subset(
+    nValuesOfDates,
+    values == max(nValuesOfDates$ values)
+))
+
+#i12 13 14
+#Bây giờ là theo cả Date và cả Châu Lục
