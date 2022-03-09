@@ -161,29 +161,31 @@ findValuesDC <- function(k = "", t = "") {
             date == t
     )$ values)
 }
-#findValuesDC ("Africa", "2/19/2022")
+# findValuesDC ("Africa", "2/19/2022")
 
-#i16
-#tìm các đất nước có số lượng dữ liệu thu thập bằng nhau
-#ở đây tôi không biết là in tất cả hay in một số!
+# i16
+# tìm các đất nước có số lượng dữ liệu thu thập bằng nhau
+# ở đây tôi không biết là in tất cả hay in một số!
 
-#tạo một bảng mới có iso_code ở đầu, đề yêu cầu in iso_cdoe
-nValuesOfLoca2 <- data.frame(append (unique(bigTable$ iso_code), 0), nValuesOfLoca) 
-for (i in 1 : (nrow(nValuesOfLoca) - 1) ) {
-    for (j in i : nrow(nValuesOfLoca)) {
-        if (nValuesOfLoca[i,2] == nValuesOfLoca[j,2] ) {
-            print (
-                subset (nValuesOfLoca2, values == nValuesOfLoca[i,2] ) [, 1]
+# tạo một bảng mới có iso_code ở đầu, đề yêu cầu in iso_cdoe
+cached <- c()
+nValuesOfLoca2 <- data.frame(append(unique(bigTable$ iso_code), 0), nValuesOfLoca)
+for (i in 1:(nrow(nValuesOfLoca) - 1)) {
+    for (j in ((i + 1):nrow(nValuesOfLoca))) {
+        if (nValuesOfLoca[i, 2] == nValuesOfLoca[j, 2] &
+            !(nValuesOfLoca[i, 2] %in% cached)) {
+            print(
+                subset(nValuesOfLoca2, values == nValuesOfLoca[i, 2])[, 1]
             )
-            break #ở đây tôi không biết là in tất cả hay in một số!
-
+            cached <- append(cached, nValuesOfLoca[i, 2])
+            # ở đây tôi không biết là in tất cả hay in một số!
         }
     }
 }
-#lỗi ở đây
+# lỗi ở đây
 
-#i17 liệt kê tên đất nước, chiều dài iso_code >= 3
-print (subset (bigTable,
+# i17 liệt kê tên đất nước, chiều dài iso_code >= 3
+print(subset(
+    bigTable,
     str_length(iso_code) >= 3
-    ) [ , c(1,3)]
-)
+)[, c(1, 3)])
