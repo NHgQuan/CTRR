@@ -8,27 +8,11 @@ load("workspace/preTask.RData")
 # tính số lượng đất nước
 numLoca <- length(unique(bigTable$ location))
 
-# hiển thị tên 10 đất nước đầu tiên
-iso_code <- c("AFG")
-country <- c("Afghanistan")
-locations <- bigTable$ location
-indexCountry <- 1
-for (i in seq(1, (length(locations) - 1), by = 1)) {
-    if (locations[i] != locations[i + 1]) {
-        indexCountry <- indexCountry + 1
-
-        # sử dụng vector <- append (vector, element) để thêm cái phần tử đó vào sau đít vector
-        iso_code <- append(iso_code, bigTable$ iso_code[i + 1])
-        country <- append(country, bigTable$ country[i + 1])
-    }
-    if (indexCountry >= 10) {
-        break
-    }
-}
-
 # i2
 # Bảng hiển thị 10 đất nước đầu tiên
-top10Countries <- data.frame(iso_code, country)
+countries <- unique(bigTable[, c(1, 3)])
+top10Countries <- head(countries, n = 10)
+print (top10Countries)
 
 # i3
 # tìm số lượng châu lục trong tập mẫu
@@ -156,7 +140,7 @@ nValuesOfLoca2 <- data.frame(append(unique(bigTable$ iso_code), 0), nValuesOfLoc
 for (i in 1:(nrow(nValuesOfLoca) - 1)) {
     for (j in ((i + 1):nrow(nValuesOfLoca))) {
         if (nValuesOfLoca[i, 2] == nValuesOfLoca[j, 2] &
-            !(nValuesOfLoca[i, 2] %in% cached)) {   #toán tử %in% để kiểm tra xem một phần tử có ở trong một dãy hay không
+            !(nValuesOfLoca[i, 2] %in% cached)) { # toán tử %in% để kiểm tra xem một phần tử có ở trong một dãy hay không
             print(
                 subset(nValuesOfLoca2, values == nValuesOfLoca[i, 2])[, 1]
             )
