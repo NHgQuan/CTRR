@@ -54,19 +54,29 @@ numConti <- length(unique(bigTable$ continent))
 
 # i45
 # tính số lượng dữ liệu thu thập được trong từng châu lục và tổng số
-# ở đây, tôi giả sử "dữ liệu" đề bài nói đến chính là new_cases và new_deaths
+# ở đây, tôi giả sử "dữ liệu" đề bài nói đến chính là số hàng
+continents <- unique(bigTable $ continent)
+values <- c()
 
-# Đầu tiên, lập bảng newcases của từng châu lục (continents)
-continents <- unique(bigTable$ continent)
-
-new_cases <- c()
 for (string in continents) {
-    new_cases <- append(new_cases, sum(
-        (subset(bigTable, continent == string)) $ new_cases
-    ))
+    values <- append(values, nrow(subset(bigTable, continent == string)))
 }
-#hàm subset dùng để tách một bảng con từ bảng cho trước với điều kiện nào đó
-#hàm append để chèn thêm 1 phần tử vào cuối một lục
-#tại sao bước tính new_cases lại sai?
+continents <- append (continents, "Sum")
+values <- append(values, sum (values) ) #cần tính tổng nữa
+nValuesOfContinents <- data.frame(continents, values) #bước hoàn thiện bảng cần tính
+                                                      #vẫn có một châu lục trống
 
-test <- data.frame (continents, new_cases)
+#i5 làm hoàn toàn tương tự như i4
+locations <- unique (bigTable $ location)
+values <- c()
+
+for (string in locations) {
+    values <- append(values, nrow(subset(bigTable, location == string)))
+}
+locations <- append (locations, "Sum")
+values <- append(values, sum (values) ) #cần tính tổng nữa
+nValuesOfLoca <- data.frame(locations, values)
+
+#hiển thị 10 nước cuối, sử dụng hàm tail(), ngược lại dùng hàm head()
+print (tail (nValuesOfLoca, n = 11))
+
