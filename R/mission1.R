@@ -173,7 +173,7 @@ nValuesOfLoca2 <- data.frame(append(unique(bigTable$ iso_code), 0), nValuesOfLoc
 for (i in 1:(nrow(nValuesOfLoca) - 1)) {
     for (j in ((i + 1):nrow(nValuesOfLoca))) {
         if (nValuesOfLoca[i, 2] == nValuesOfLoca[j, 2] &
-            !(nValuesOfLoca[i, 2] %in% cached)) {
+            !(nValuesOfLoca[i, 2] %in% cached)) {   #toán tử %in% để kiểm tra xem một phần tử có ở trong một dãy hay không
             print(
                 subset(nValuesOfLoca2, values == nValuesOfLoca[i, 2])[, 1]
             )
@@ -182,7 +182,7 @@ for (i in 1:(nrow(nValuesOfLoca) - 1)) {
         }
     }
 }
-# lỗi ở đây
+# lỗi ở đâyasdfdaf
 
 # i17 liệt kê tên đất nước, chiều dài iso_code >= 3
 print(subset(
