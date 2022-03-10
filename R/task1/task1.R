@@ -1,7 +1,7 @@
 library(stringi)
-setwd("F://PvD//Studying//Programming//CTRRAssignment//CTRR_BTL")
+setwd("C://Users//TTC//Documents//GitHub//CTRR//R")
 dataRaw <- read.csv2("owid-covid-data.csv", header = TRUE, sep = ",")
-setwd("F://PvD//Studying//Programming//CTRRAssignment//CTRR_BTL//task1")
+setwd("C://Users//TTC//Documents//GitHub//CTRR//R//task1")
 #MADE 4263
   x <- length(dataRaw$continent)
 
@@ -278,6 +278,7 @@ setwd("F://PvD//Studying//Programming//CTRRAssignment//CTRR_BTL//task1")
   for (i in 1 : 1000)
   Observations[i] <- 0
   for (i in 1 : x)
+  if (stri_sub(dataRaw$iso_code[i], 0, 4) != "OWID")
   {
     k <- as.integer(strptime(dataRaw$date[i], format = "%m/%d/%Y") - basedate)
     Observations[k] <- Observations[k] + 1
