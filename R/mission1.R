@@ -12,6 +12,7 @@ numLoca <- length(unique(bigTable$ location))
 # Bảng hiển thị 10 đất nước đầu tiên
 countries <- unique(bigTable[, c(1, 3)])
 top10Countries <- head(countries, n = 10)
+print ("danh sách 10 nước đầu tiên")
 print (top10Countries)
 
 # i3
@@ -46,27 +47,28 @@ values <- append(values, sum(values)) # cần tính tổng nữa
 nValuesOfLoca <- data.frame(locations, values)
 
 # hiển thị 10 nước cuối, sử dụng hàm tail(), ngược lại dùng hàm head()
+print ("danh sách 10 nước cuối cùng")
 print(tail(nValuesOfLoca, n = 11))
 
 # i6789
-print("Châu lục có số lượng dữ liệu thu thập nhỏ nhất")
-print(subset(
+#print("Châu lục có số lượng dữ liệu thu thập nhỏ nhất")
+minConti <- (subset(
     nValuesOfContinents,
     values == min(nValuesOfContinents$ values)
 ))
-print("Châu lục có số lượng dữ liệu thu thập lớn nhất")
-print(subset(
+#print("Châu lục có số lượng dữ liệu thu thập lớn nhất")
+maxConti <- (subset(
     nValuesOfContinents,
     values == max(nValuesOfContinents[-nrow(nValuesOfContinents), ]$ values)
 )) #- nrow để loại đi cái cuối cùng là sum
 
-print("Nước có số lượng dữ liệu thu thập nhỏ nhất")
-print(subset(
+#print("Nước có số lượng dữ liệu thu thập nhỏ nhất")
+minLoca <- (subset(
     nValuesOfLoca,
     values == min(nValuesOfLoca$ values)
 ))
-print("Nước có số lượng dữ liệu thu thập lớn nhất")
-print(subset(
+#print("Nước có số lượng dữ liệu thu thập lớn nhất")
+maxLoca <- (subset(
     nValuesOfLoca,
     values == max(nValuesOfLoca[-nrow(nValuesOfLoca), ]$ values)
 ))
@@ -82,13 +84,13 @@ for (string in dates) {
 }
 nValuesOfDates <- data.frame(dates, values)
 
-print("Ngày có số lượng dữ liệu thu thập nhỏ nhất")
-print(subset(
+#print("Ngày có số lượng dữ liệu thu thập nhỏ nhất")
+minDate <- (subset(
     nValuesOfDates,
     values == min(nValuesOfDates$ values)
 ))
-print("Ngày có số lượng dữ liệu thu thập lớn nhất")
-print(subset(
+#print("Ngày có số lượng dữ liệu thu thập lớn nhất")
+maxDate <- (subset(
     nValuesOfDates,
     values == max(nValuesOfDates$ values)
 ))
@@ -107,13 +109,13 @@ for (i in (1:nrow(contiAndDate))) {
 }
 nValuesOfContiAndDate <- data.frame(contiAndDate, values)
 
-print("số lượng dữ liệu thu thập lớn nhất theo ngày và Châu Lục")
-print(subset(
+#print("số lượng dữ liệu thu thập lớn nhất theo ngày và Châu Lục")
+maxDateConti <- (subset(
     nValuesOfContiAndDate,
     values == max(nValuesOfContiAndDate$ values)
 ))
-print("số lượng dữ liệu thu thập nhỏ nhất theo ngày và Châu Lục")
-print(subset(
+#print("số lượng dữ liệu thu thập nhỏ nhất theo ngày và Châu Lục")
+minDateConti <- (subset(
     nValuesOfContiAndDate,
     values == min(nValuesOfContiAndDate$ values)
 ))
@@ -122,7 +124,7 @@ print(subset(
 # Với một date là k và châu lục t cho trước, hãy cho biết số lượng dữ liệu thu thập được.
 # function
 findValuesDC <- function(k = "", t = "") {
-    print(subset(
+    return (subset(
         nValuesOfContiAndDate,
         continent == k &
             date == t
@@ -133,8 +135,8 @@ findValuesDC <- function(k = "", t = "") {
 # i16
 # tìm các đất nước có số lượng dữ liệu thu thập bằng nhau
 # ở đây tôi không biết là in tất cả hay in một số!
-
 # tạo một bảng mới có iso_code ở đầu, đề yêu cầu in iso_cdoe
+print ("Các đất nước có số lượng dữ liệu thu thập được bằng nhau")
 cached <- c()
 nValuesOfLoca2 <- data.frame(append(unique(bigTable$ iso_code), 0), nValuesOfLoca)
 for (i in 1:(nrow(nValuesOfLoca) - 1)) {
@@ -152,7 +154,7 @@ for (i in 1:(nrow(nValuesOfLoca) - 1)) {
 # lỗi ở đâyasdfdaf
 
 # i17 liệt kê tên đất nước, chiều dài iso_code >= 3
-print(subset(
+longNameCountry <- (subset(
     bigTable,
     str_length(iso_code) >= 3
 )[, c(1, 3)])
